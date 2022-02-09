@@ -28,14 +28,14 @@ N.B. Command to delete cluster (Note the PVC remains on AWS and will ***accumula
 - eksctl delete cluster --name test-cluster
 
 
-## Install cert-manager
+## 1. Install cert-manager
 
  - kubectl create namespace cert-manager
  - helm repo add jetstack https://charts.jetstack.io
  - helm repo update
  - helm install cert-manager jetstack/cert-manager --namespace cert-manager --version v1.7.0 --set installCRDs=true
 
-## Install Ingress Controller
+## 2. Install Ingress Controller
 
 helm install ing ingress-nginx/ingress-nginx \
   --namespace ingress \
@@ -45,19 +45,19 @@ helm install ing ingress-nginx/ingress-nginx \
 
 
 
-## Update Route53
+### Update Route53
 After a couple of seconds below command should display External address in a form of domain, update your route53 records accordingly (with Type A record)
 
 - kubectl get svc -n ingress
 
 
-## Install ingress resource
+## 3. Install ingress resource
 
 - kubectl apply -f ingress.yaml
 
 - kubectl get ing
 
-## Create self signed CA
+## 4. Create self signed CA
 
 - kubectl apply -f example-1
 
@@ -65,7 +65,7 @@ After a couple of seconds below command should display External address in a for
 - kubectl get secret -n cert-manager
 - kubectl get secret ca-key-pair -o yaml -n cert-manager
 
-## Create certificates from the self signed CA that was just created by Cert Manager
+## 5. Create certificates from the self signed CA that was just created by Cert Manager
 
 - kubectl apply -f example-2
 
@@ -75,7 +75,7 @@ After a couple of seconds below command should display External address in a for
 
 - kubectl get secret tls-for-dashboards-key-pair -o yaml
 
-## Deploy Opensearch using helm and the created certificates 
+## 6. Deploy Opensearch using helm and the created certificates 
 
 - cd charts/opensearch
 
@@ -87,7 +87,7 @@ After a couple of seconds below command should display External address in a for
 
 - kubectl get pod
 
-## Deploy Dashboards
+## 7. Deploy Dashboards
 
 - cd ../opensearch-dashboards/
 
