@@ -27,6 +27,8 @@ eksctl create cluster \
 N.B. Command to delete cluster (Note the PVC remains on AWS and will ***accumulate charges if not deleted***)
 - eksctl delete cluster --name test-cluster
 
+---
+
 
 ## 1. Install cert-manager
 
@@ -34,6 +36,8 @@ N.B. Command to delete cluster (Note the PVC remains on AWS and will ***accumula
  - helm repo add jetstack https://charts.jetstack.io
  - helm repo update
  - helm install cert-manager jetstack/cert-manager --namespace cert-manager --version v1.7.0 --set installCRDs=true
+
+---
 
 ## 2. Install Ingress Controller
 
@@ -50,12 +54,15 @@ After a couple of seconds below command should display External address in a for
 
 - kubectl get svc -n ingress
 
+---
 
 ## 3. Install ingress resource
 
 - kubectl apply -f ingress.yaml
 
 - kubectl get ing
+
+---
 
 ## 4. Create self signed CA
 
@@ -64,6 +71,8 @@ After a couple of seconds below command should display External address in a for
 ### Examine the created certificates
 - kubectl get secret -n cert-manager
 - kubectl get secret ca-key-pair -o yaml -n cert-manager
+
+---
 
 ## 5. Create certificates from the self signed CA that was just created by Cert Manager
 
@@ -75,6 +84,8 @@ After a couple of seconds below command should display External address in a for
 
 - kubectl get secret tls-for-dashboards-key-pair -o yaml
 
+---
+
 ## 6. Deploy Opensearch using helm and the created certificates 
 
 - cd charts/opensearch
@@ -83,9 +94,11 @@ After a couple of seconds below command should display External address in a for
 
 - helm install --values=values.yaml opensearch opensearch-1.7.1.tgz
 
-### make sure the 3 pods are running
+### Make sure the 3 pods are running
 
 - kubectl get pod
+
+---
 
 ## 7. Deploy Dashboards
 
