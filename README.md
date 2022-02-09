@@ -61,7 +61,7 @@ After a couple of seconds below command should display External address in a for
 
 - kubectl apply -f example-1
 
-## Examine the created certificates
+### Examine the created certificates
 - kubectl get secret -n cert-manager
 - kubectl get secret ca-key-pair -o yaml -n cert-manager
 
@@ -69,7 +69,7 @@ After a couple of seconds below command should display External address in a for
 
 - kubectl apply -f example-2
 
-## Examine the created certificates
+### Examine the created certificates
 
 - kubectl get secret
 
