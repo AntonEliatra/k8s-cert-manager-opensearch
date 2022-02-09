@@ -1,0 +1,28 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-opensearch
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - test-domain.co.uk
+    secretName: tls-for-dashboards-key-pair
+  rules:
+  - host: test-domain.co.uk
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            #name: opensearch-cluster-master
+            name: dashboards-opensearch-dashboards
+            port:
+              #number: 9200
+              number: 5601
