@@ -24,7 +24,7 @@ eksctl create cluster \
 --node-type t2.medium \
 --nodes 3
 
-### Command to delete cluster (Please note the PVC remains on AWS and will accumulate charges if not deleted)
+N.B. Command to delete cluster (Note the PVC remains on AWS and will ***accumulate charges if not deleted***)
 - eksctl delete cluster --name test-cluster
 
 
