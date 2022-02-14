@@ -9,7 +9,7 @@ Demo of Opensearch deployment in k8s with cert manager and self-signed ca certif
  - Deployment of Opensearch/Dashboards using helm
 
 ## Technologies used:
- - AWS Cluster
+ - EKS Cluster
  - Route53
  - Cert-Manager
  - ingress-nginx
@@ -24,7 +24,7 @@ eksctl create cluster \
 --node-type t2.medium \
 --nodes 3
 
-N.B. Command to delete cluster (Note the PVC remains on AWS and will ***accumulate charges if not deleted***)
+N.B. Command to delete cluster (Note the PV remains on AWS and will ***accumulate charges if not deleted***)
 - eksctl delete cluster --name test-cluster
 
 ---
