@@ -1,0 +1,21 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tls-for-dashboards
+  namespace: default
+spec:
+  secretName: tls-for-dashboards
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+    group: cert-manager.io
+  commonName: eliatra-support.co.uk
+  dnsNames:
+  - eliatra-support.co.uk
+  privateKey:
+    algorithm: RSA
+    encoding: PKCS8
+    size: 2048
+  usages:
+    - server auth
+    - client auth
