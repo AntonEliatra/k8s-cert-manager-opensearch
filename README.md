@@ -7,6 +7,8 @@ Demo of Opensearch deployment in k8s with cert manager and self-signed ca certif
  - Creation of self signed CA using cert manager
  - Creation of cert manager certificates signed by selfsigned CA
  - Deployment of Opensearch/Dashboards using helm
+ - Generation of certificates using Let's Encrypt
+ - Doployment of Opensearch/Dashboards with Let's Encryt certificates
 
 ## Technologies used:
  - EKS Cluster
